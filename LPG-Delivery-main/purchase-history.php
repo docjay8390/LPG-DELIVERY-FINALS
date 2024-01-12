@@ -16,10 +16,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="./style/style.css">
 
-    <link rel="stylesheet" href="style/styles.css">
-    <title>History</title>
+    <link rel="stylesheet" href="./style/styles.css">
+    <title>Admin Home</title>
 </head>
 <body>
     <div class="nav" style="background-color: #212529; padding: 1rem 2rem;">
@@ -32,19 +32,9 @@
 
             <?php 
             
-            $id = $_SESSION['id'];
-            $query = mysqli_query($con,"SELECT*FROM history WHERE Id=$id");
-
-            while($result = mysqli_fetch_assoc($query)){
-                $Fullname = $result['Fullname'];
-                $Addresss = $result['Addresss'];
-                $Contact = $result['Contact'];
-                $Quantity = $result['Quantity'];
-                
-            }
-            
-            
-            ?>
+           
+           
+           ?>
             <a href="admin-home.php"> <button class="btn">Home</button> </a>
             <a href="logout-admin.php"> <button class="btn">Sign Out</button> </a>
         </div>
@@ -85,13 +75,65 @@ $result = mysqli_query($connection, 'SELECT * FROM history');
         $Contact = $_REQUEST [ "Contact"];
         $Addresss = $_REQUEST [ "Addresss"];
         $Quantity = $_REQUEST [ "Quantity"];
+        $Total = $Quantity * 899;
+        
 
     //this is database format for inserting the data
 
     $insert_query = "INSERT INTO `history` (`Fullname`, 
-    `Contact`, `Addresss`, `Quantity`)
+    `Contact`, `Addresss`, `Quantity`, `Total`)
 
-    VALUES ('$Fullname', '$Contact', '$Addresss', '$Quantity') 
+    VALUES ('$Fullname', '$Contact', '$Addresss', '$Quantity', '$Total') 
+    ";
+
+    //requesting the db to add the new record
+
+    mysqli_query ($connection, $insert_query);
+    $msg = "Record was Successfully added inside the db!";
+    }
+    
+?>
+
+<?php
+// Display record here...
+require("connect.php");
+// require("config.php");
+
+//this is viewwing of records inside myql db
+
+// $result = mysqli_query($connection, 'SELECT * FROM admin');
+$result = mysqli_query($connection, 'SELECT id, Fullname, Contact, Addresss, Quantity, (Quantity * 899) AS Total FROM history');
+
+
+// these are record inside MYSQL
+?>
+
+
+<?php
+// Add record here...
+
+    //connecting the page using 
+
+    // require("connect.php");
+    require("config.php");
+
+    $msg = ""; //to not display error an msg
+
+    if (isset($_POST ['new']) && $_POST ['new'] == 0) {
+        //collecting the inputed data inside the form
+
+        $Fullname = $_REQUEST [ "Fullname"];
+        $Contact = $_REQUEST [ "Contact"];
+        $Addresss = $_REQUEST [ "Addresss"];
+        $Quantity = $_REQUEST [ "Quantity"];
+        $Total = $Quantity * 899; // calculate total price
+
+    //this is database format for inserting the data
+
+    $insert_query = "INSERT INTO `history` (`Fullname`, 
+    `Contact`, `Addresss`, `Quantity`, `Total`)
+
+    VALUES ('$Fullname', '$Contact', '$Addresss', '$Quantity', '$Total') 
     ";
 
     //requesting the db to add the new record
@@ -117,11 +159,13 @@ $result = mysqli_query($connection, 'SELECT * FROM history');
         <!-- this is the title of the records -->
         <thead>
             <tr style="background-color: white;">
-                <!-- <td>ID No.</td> -->
+                <td>ID No.</td>
                 <td colspan="3" style="padding: 0 5px">Full Name</td>
                 <td colspan="3" style="padding: 0 5px">Contact Number</td>
                 <td colspan="3" style="padding: 0 5px">Address</td>
                 <td colspan="3" style="padding: 0 5px">Quantity</td>
+                <td colspan="3" style="padding: 0 5px">Total</td>
+                
             </tr>
         </thead>
 
@@ -132,26 +176,22 @@ $result = mysqli_query($connection, 'SELECT * FROM history');
             while($row = mysqli_fetch_array($result) ) 
             {
 
-        ?>
+     ?>
 
         <tr style="background-color: white;">
             <!--  -->
+            <td colspan="" style="padding: 0 5px"><?php echo $row['id'];?>
+            <td colspan="3" style="padding: 0 5px"><?php echo $row['Fullname'];?>
+            <td colspan="3" style="padding: 0 5px"><?php echo $row['Contact'];?>
+            <td colspan="3" style="padding: 0 5px"><?php echo $row['Addresss'];?>
+            <td colspan="3" style="padding: 0 5px"><?php echo $row['Quantity'];?>
+            <td colspan="3" style="padding: 0 5px"><?php echo number_format($row['Total'], 2);?>
             
-            <td colspan="3" style="padding: 0 5px"><?php echo $row['Fullname']; ?>
-            <td colspan="3" style="padding: 0 5px"><?php echo $row['Contact']; ?>
-            <td colspan="3" style="padding: 0 5px"><?php echo $row['Addresss']; ?>
-            <td colspan="3" style="padding: 0 5px"><?php echo $row['Quantity']; ?>
+            
         </tr>
-        <?php } ?>
+        <?php }?>
 
     </table>
 </body>
 
-</html>
-
-
-
-    </div>
-    
-</body>
 </html>

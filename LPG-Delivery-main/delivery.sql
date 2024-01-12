@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2024 at 04:41 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: Jan 07, 2024 at 02:57 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,7 +36,7 @@ CREATE TABLE `accounts` (
   `Contact` varchar(12) DEFAULT NULL,
   `Quantity` varchar(200) NOT NULL,
   `Password` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `accounts`
@@ -48,8 +48,7 @@ INSERT INTO `accounts` (`Id`, `Fullname`, `Username`, `Email`, `Destination`, `C
 (11, 'Jeric Raval', 'jeric22', 'jeric@gmail.com', 'mindanao', '09376584931', '', 'jeric12'),
 (12, 'Kenny Ackerman', 'Kenny12', 'kenny@gmail.com', 'Wall Maria', '09478346732', '', 'kenny12'),
 (13, 'Ienreb Fernando', 'reb12', 'reb@gmail.com', 'San Roque Dau', '09374856473', '', 'reb12'),
-(14, 'Isaac Netero', 'Netero10', 'netero15@gmail.com', 'Dark Continent', '09301839173', '', 'netero12'),
-(15, 'Omar Casir', 'Omar Pogi', 'omar@gmail.com', 'Mindanao', '09381937281', '', 'omar12');
+(14, 'Isaac Netero', 'Netero10', 'netero15@gmail.com', 'Dark Continent', '09301839173', '', 'netero12');
 
 -- --------------------------------------------------------
 
@@ -63,7 +62,7 @@ CREATE TABLE `admin` (
   `Contact` varchar(200) DEFAULT NULL,
   `Destination` varchar(200) DEFAULT NULL,
   `Quantity` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -77,7 +76,7 @@ CREATE TABLE `adminpage` (
   `Username` varchar(200) DEFAULT NULL,
   `Email` varchar(200) DEFAULT NULL,
   `Password` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `adminpage`
@@ -104,17 +103,26 @@ CREATE TABLE `history` (
   `Fullname` varchar(200) DEFAULT NULL,
   `Addresss` varchar(200) DEFAULT NULL,
   `Contact` varchar(200) DEFAULT NULL,
-  `Quantity` varchar(200) DEFAULT NULL,
-  `Total` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Quantity` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `history`
 --
 
-INSERT INTO `history` (`Id`, `Fullname`, `Addresss`, `Contact`, `Quantity`, `Total`) VALUES
-(33, 'Omar Casir', 'Mindanao', '09109284672', '4', ''),
-(34, 'Omar Casir', 'Mindanao', '09371824627', '7', '');
+INSERT INTO `history` (`Id`, `Fullname`, `Addresss`, `Contact`, `Quantity`) VALUES
+(1, 'Larry', 'Tarlac', '09372819463', '29'),
+(2, 'Billy', 'Quezon', '09372845362', '99'),
+(3, 'Lamar', 'Los santos', '093728175', '20'),
+(7, 'hh', 'jj', '093019', '99'),
+(8, 'Wizard', 'COC', '093819312', '90'),
+(9, 'Isaac Netero', 'Dark Continent', '09301738192', '90'),
+(10, 'Isaac Netero', '', '091839103918', '99'),
+(11, 'Isaac Netero', '', '09301938192', '90'),
+(12, 'Isaac Netero', 'Dark Continent', '09103819281', '90'),
+(13, 'Isaac Netero', 'Dark Continent', '09103918218', '90'),
+(14, 'Isaac Netero', 'Dark Continent', '093018391291', '97'),
+(15, 'Isaac Netero', 'Dark Continent', '09301939102', '90');
 
 -- --------------------------------------------------------
 
@@ -127,16 +135,19 @@ CREATE TABLE `orders` (
   `Fullname` varchar(200) DEFAULT NULL,
   `Addresss` varchar(200) DEFAULT NULL,
   `Contact` varchar(12) DEFAULT NULL,
-  `Quantity` varchar(200) DEFAULT NULL,
-  `Total` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Quantity` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `Fullname`, `Addresss`, `Contact`, `Quantity`, `Total`) VALUES
-(57, 'Omar Casir', 'Mindanao', '09371824627', '7', '');
+INSERT INTO `orders` (`id`, `Fullname`, `Addresss`, `Contact`, `Quantity`) VALUES
+(22, 'Shelby', 'Taguig', '09462738193', '19'),
+(25, 'Luccy', 'East Blue', '09381736271', '99'),
+(30, 'hh', 'jj', '093019', '99'),
+(37, 'Isaac Netero', 'Dark Continent', '093018391291', '97'),
+(38, 'Isaac Netero', 'Dark Continent', '09301939102', '90');
 
 -- --------------------------------------------------------
 
@@ -151,7 +162,7 @@ CREATE TABLE `users` (
   `Email` varchar(200) DEFAULT NULL,
   `Contact` int(12) DEFAULT NULL,
   `Password` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -201,7 +212,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -219,13 +230,13 @@ ALTER TABLE `adminpage`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `users`

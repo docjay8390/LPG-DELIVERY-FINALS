@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="./style.css">
     <title>Register</title>
 </head>
 <?php 
@@ -59,7 +59,7 @@
             
             
          }
-
+         
         //  brick
          }else{
             $id = $_SESSION['id'];
@@ -98,13 +98,33 @@
 
                 <div class="field input">
                     <label for="Contact">Contact</label>
-                    <input type="number" name="Contact" id="age" autocomplete="off" required>
+                    <input type="number" name="Contact" id="ag" autocomplete="off" required>
                 </div>
-
-                <div class="field input">
-                    <label for="Quantity">Quantity</label>
+                
+                <!-- <div class="field input">
+                    <label id="quant" for="Quantity">Quantity</label>
                     <input type="number" name="Quantity" id="age" autocomplete="off" required>
-                </div>
+                </div> -->
+
+                <!-- lll -->
+                <script>
+                        const quantityInput = document.getElementById('age');
+                        const totalOutput = document.getElementById('total');
+
+                        quantityInput.addEventListener('input', () => {
+                            const quantity = parseInt(quantityInput.value);
+                            const total = quantity * 899;
+                            totalOutput.textContent = `Total: $${total}`;
+                        });
+                </script>
+                        <div class="field input">
+                        <label id="quant" for="Quantity">Quantity</label>
+                        <input type="number" name="Quantity" id="age" autocomplete="off" required>
+                        <p id="total"></p>
+                        </div>
+                <!-- lll -->
+
+
                 <br>
                 <div class="field">
                     <input type="submit" class="btn" name="submit" value="Place Order" required>

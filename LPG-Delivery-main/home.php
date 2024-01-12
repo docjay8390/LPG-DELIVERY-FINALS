@@ -12,9 +12,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="./style.css">
 
-    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="./styles.css">
     <title>Home</title>
 </head>
 
@@ -106,7 +106,7 @@
                 $id = $result['Id'];
             }
             
-            echo "<a style='color: white;' href='edit-admin.php?Id=$id'>Change Profile</a>";
+            echo "<a style='color: white;' href='edit.php?Id=$id'>Change Profile</a>";
             ?>
 
             <a href="logout.php"> <button class="btn">Sign Out</button> </a>
